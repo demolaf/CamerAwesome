@@ -127,10 +127,9 @@ data class CameraXState(
 
 
                 val preview = if (aspectRatio != null) {
-                    Preview.Builder().setTargetAspectRatio(aspectRatio!!)
-                        .setCameraSelector(cameraSelector).build()
+                    Preview.Builder().setTargetAspectRatio(aspectRatio!!).build()
                 } else {
-                    Preview.Builder().setCameraSelector(cameraSelector).build()
+                    Preview.Builder().build()
                 }
                 preview.setSurfaceProvider(
                     surfaceProvider(executor(activity), sensor.deviceId ?: "$index")
@@ -139,7 +138,7 @@ data class CameraXState(
                 previews!!.add(preview)
 
                 if (currentCaptureMode == CaptureModes.PHOTO) {
-                    val imageCapture = ImageCapture.Builder().setCameraSelector(cameraSelector)
+                    val imageCapture = ImageCapture.Builder()
 //                .setJpegQuality(100)
                         .apply {
                             //photoSize?.let { setTargetResolution(it) }
@@ -198,10 +197,9 @@ data class CameraXState(
             if (currentCaptureMode != CaptureModes.ANALYSIS_ONLY) {
                 previews!!.add(
                     if (aspectRatio != null) {
-                        Preview.Builder().setTargetAspectRatio(aspectRatio!!)
-                            .setCameraSelector(cameraSelector).build()
+                        Preview.Builder().setTargetAspectRatio(aspectRatio!!).build()
                     } else {
-                        Preview.Builder().setCameraSelector(cameraSelector).build()
+                        Preview.Builder().build()
                     }
                 )
 
@@ -212,7 +210,7 @@ data class CameraXState(
             }
 
             if (currentCaptureMode == CaptureModes.PHOTO) {
-                val imageCapture = ImageCapture.Builder().setCameraSelector(cameraSelector)
+                val imageCapture = ImageCapture.Builder()
 //                .setJpegQuality(100)
                     .apply {
                         //photoSize?.let { setTargetResolution(it) }
